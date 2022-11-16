@@ -12,4 +12,9 @@ abstract class AppTextStyles {
         fontWeight: FontWeight.w500,
         color: color ?? AppColors.black,
       );
+  static s32Wbold({Color? color}) => TextStyle(
+        fontSize: 28,
+        fontWeight: FontWeight.bold,
+        color: color ?? AppColors.black,
+      );
 }

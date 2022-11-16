@@ -19,7 +19,8 @@ import '../features/apartments/presentation/apartments/screen/apartments_screen.
 import '../features/companies/presentation/companies/screen/companies_screen.dart'
     as _i4;
 import '../features/map/presentation/screen/map_screen.dart' as _i6;
-import '../features/profile/presentation/screen/profile_screen.dart' as _i7;
+import '../features/profile/presentation/profile_main_screen/profile_screen.dart'
+    as _i7;
 import '../features/splash/splash_screen.dart' as _i1;
 import '../widgets/bottom_navigator.dart' as _i2;
 import 'mobile_app_router.dart' as _i3;
