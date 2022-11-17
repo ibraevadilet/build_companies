@@ -11,109 +11,126 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i8;
-import 'package:flutter/material.dart' as _i9;
+import 'package:auto_route/auto_route.dart' as _i9;
+import 'package:flutter/material.dart' as _i10;
 
 import '../features/apartments/presentation/apartments/screen/apartments_screen.dart'
-    as _i5;
+    as _i6;
+import '../features/companies/data/models/comany_model.dart' as _i11;
 import '../features/companies/presentation/companies/screen/companies_screen.dart'
-    as _i4;
-import '../features/map/presentation/screen/map_screen.dart' as _i6;
+    as _i5;
+import '../features/companies/presentation/company_detail/screen/company_detail_screen.dart'
+    as _i2;
+import '../features/map/presentation/screen/map_screen.dart' as _i7;
 import '../features/profile/presentation/profile_main_screen/profile_screen.dart'
-    as _i7;
+    as _i8;
 import '../features/splash/splash_screen.dart' as _i1;
-import '../widgets/bottom_navigator.dart' as _i2;
-import 'mobile_app_router.dart' as _i3;
+import '../widgets/bottom_navigator.dart' as _i3;
+import 'mobile_app_router.dart' as _i4;
 
-class MobileAppRouter extends _i8.RootStackRouter {
-  MobileAppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
+class MobileAppRouter extends _i9.RootStackRouter {
+  MobileAppRouter([_i10.GlobalKey<_i10.NavigatorState>? navigatorKey])
       : super(navigatorKey);
 
   @override
-  final Map<String, _i8.PageFactory> pagesMap = {
+  final Map<String, _i9.PageFactory> pagesMap = {
     SplashScreenRoute.name: (routeData) {
-      return _i8.AdaptivePage<dynamic>(
+      return _i9.AdaptivePage<dynamic>(
         routeData: routeData,
         child: const _i1.SplashScreen(),
       );
     },
-    BottomNavigatorRoute.name: (routeData) {
-      return _i8.AdaptivePage<dynamic>(
+    CompanyDetailScreenRoute.name: (routeData) {
+      final args = routeData.argsAs<CompanyDetailScreenRouteArgs>();
+      return _i9.AdaptivePage<dynamic>(
         routeData: routeData,
-        child: const _i2.BottomNavigator(),
+        child: _i2.CompanyDetailScreen(
+          model: args.model,
+          key: args.key,
+        ),
+      );
+    },
+    BottomNavigatorRoute.name: (routeData) {
+      return _i9.AdaptivePage<dynamic>(
+        routeData: routeData,
+        child: const _i3.BottomNavigator(),
       );
     },
     CompaniesScreenNavigator.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i4.EmptyRouterPage(),
       );
     },
     ApartmentsScreenNavigator.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i4.EmptyRouterPage(),
       );
     },
     MapScreenNavigator.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i4.EmptyRouterPage(),
       );
     },
     ProfileScreenNavigator.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i3.EmptyRouterPage(),
+        child: const _i4.EmptyRouterPage(),
       );
     },
     CompaniesScreenRoute.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i4.CompaniesScreen(),
+        child: const _i5.CompaniesScreen(),
       );
     },
     ApartmentsScreenRoute.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i5.ApartmentsScreen(),
+        child: const _i6.ApartmentsScreen(),
       );
     },
     MapScreenRoute.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i6.MapScreen(),
+        child: const _i7.MapScreen(),
       );
     },
     ProfileScreenRoute.name: (routeData) {
-      return _i8.CupertinoPageX<dynamic>(
+      return _i9.CupertinoPageX<dynamic>(
         routeData: routeData,
-        child: const _i7.ProfileScreen(),
+        child: const _i8.ProfileScreen(),
       );
     },
   };
 
   @override
-  List<_i8.RouteConfig> get routes => [
-        _i8.RouteConfig(
+  List<_i9.RouteConfig> get routes => [
+        _i9.RouteConfig(
           SplashScreenRoute.name,
           path: '/',
         ),
-        _i8.RouteConfig(
+        _i9.RouteConfig(
+          CompanyDetailScreenRoute.name,
+          path: 'company_detail_screen',
+        ),
+        _i9.RouteConfig(
           BottomNavigatorRoute.name,
           path: '/navigator',
           children: [
-            _i8.RouteConfig(
+            _i9.RouteConfig(
               CompaniesScreenNavigator.name,
               path: 'companies',
               parent: BottomNavigatorRoute.name,
               children: [
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   CompaniesScreenRoute.name,
                   path: '',
                   parent: CompaniesScreenNavigator.name,
                 ),
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   '*#redirect',
                   path: '*',
                   parent: CompaniesScreenNavigator.name,
@@ -122,17 +139,17 @@ class MobileAppRouter extends _i8.RootStackRouter {
                 ),
               ],
             ),
-            _i8.RouteConfig(
+            _i9.RouteConfig(
               ApartmentsScreenNavigator.name,
               path: 'apartments',
               parent: BottomNavigatorRoute.name,
               children: [
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   ApartmentsScreenRoute.name,
                   path: '',
                   parent: ApartmentsScreenNavigator.name,
                 ),
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   '*#redirect',
                   path: '*',
                   parent: ApartmentsScreenNavigator.name,
@@ -141,17 +158,17 @@ class MobileAppRouter extends _i8.RootStackRouter {
                 ),
               ],
             ),
-            _i8.RouteConfig(
+            _i9.RouteConfig(
               MapScreenNavigator.name,
               path: 'map',
               parent: BottomNavigatorRoute.name,
               children: [
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   MapScreenRoute.name,
                   path: '',
                   parent: MapScreenNavigator.name,
                 ),
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   '*#redirect',
                   path: '*',
                   parent: MapScreenNavigator.name,
@@ -160,17 +177,17 @@ class MobileAppRouter extends _i8.RootStackRouter {
                 ),
               ],
             ),
-            _i8.RouteConfig(
+            _i9.RouteConfig(
               ProfileScreenNavigator.name,
               path: 'profile',
               parent: BottomNavigatorRoute.name,
               children: [
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   ProfileScreenRoute.name,
                   path: '',
                   parent: ProfileScreenNavigator.name,
                 ),
-                _i8.RouteConfig(
+                _i9.RouteConfig(
                   '*#redirect',
                   path: '*',
                   parent: ProfileScreenNavigator.name,
@@ -186,7 +203,7 @@ class MobileAppRouter extends _i8.RootStackRouter {
 
 /// generated route for
 /// [_i1.SplashScreen]
-class SplashScreenRoute extends _i8.PageRouteInfo<void> {
+class SplashScreenRoute extends _i9.PageRouteInfo<void> {
   const SplashScreenRoute()
       : super(
           SplashScreenRoute.name,
@@ -197,9 +214,44 @@ class SplashScreenRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.BottomNavigator]
-class BottomNavigatorRoute extends _i8.PageRouteInfo<void> {
-  const BottomNavigatorRoute({List<_i8.PageRouteInfo>? children})
+/// [_i2.CompanyDetailScreen]
+class CompanyDetailScreenRoute
+    extends _i9.PageRouteInfo<CompanyDetailScreenRouteArgs> {
+  CompanyDetailScreenRoute({
+    required _i11.CompanyModel model,
+    _i10.Key? key,
+  }) : super(
+          CompanyDetailScreenRoute.name,
+          path: 'company_detail_screen',
+          args: CompanyDetailScreenRouteArgs(
+            model: model,
+            key: key,
+          ),
+        );
+
+  static const String name = 'CompanyDetailScreenRoute';
+}
+
+class CompanyDetailScreenRouteArgs {
+  const CompanyDetailScreenRouteArgs({
+    required this.model,
+    this.key,
+  });
+
+  final _i11.CompanyModel model;
+
+  final _i10.Key? key;
+
+  @override
+  String toString() {
+    return 'CompanyDetailScreenRouteArgs{model: $model, key: $key}';
+  }
+}
+
+/// generated route for
+/// [_i3.BottomNavigator]
+class BottomNavigatorRoute extends _i9.PageRouteInfo<void> {
+  const BottomNavigatorRoute({List<_i9.PageRouteInfo>? children})
       : super(
           BottomNavigatorRoute.name,
           path: '/navigator',
@@ -210,9 +262,9 @@ class BottomNavigatorRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class CompaniesScreenNavigator extends _i8.PageRouteInfo<void> {
-  const CompaniesScreenNavigator({List<_i8.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class CompaniesScreenNavigator extends _i9.PageRouteInfo<void> {
+  const CompaniesScreenNavigator({List<_i9.PageRouteInfo>? children})
       : super(
           CompaniesScreenNavigator.name,
           path: 'companies',
@@ -223,9 +275,9 @@ class CompaniesScreenNavigator extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class ApartmentsScreenNavigator extends _i8.PageRouteInfo<void> {
-  const ApartmentsScreenNavigator({List<_i8.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class ApartmentsScreenNavigator extends _i9.PageRouteInfo<void> {
+  const ApartmentsScreenNavigator({List<_i9.PageRouteInfo>? children})
       : super(
           ApartmentsScreenNavigator.name,
           path: 'apartments',
@@ -236,9 +288,9 @@ class ApartmentsScreenNavigator extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class MapScreenNavigator extends _i8.PageRouteInfo<void> {
-  const MapScreenNavigator({List<_i8.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class MapScreenNavigator extends _i9.PageRouteInfo<void> {
+  const MapScreenNavigator({List<_i9.PageRouteInfo>? children})
       : super(
           MapScreenNavigator.name,
           path: 'map',
@@ -249,9 +301,9 @@ class MapScreenNavigator extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i3.EmptyRouterPage]
-class ProfileScreenNavigator extends _i8.PageRouteInfo<void> {
-  const ProfileScreenNavigator({List<_i8.PageRouteInfo>? children})
+/// [_i4.EmptyRouterPage]
+class ProfileScreenNavigator extends _i9.PageRouteInfo<void> {
+  const ProfileScreenNavigator({List<_i9.PageRouteInfo>? children})
       : super(
           ProfileScreenNavigator.name,
           path: 'profile',
@@ -262,8 +314,8 @@ class ProfileScreenNavigator extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.CompaniesScreen]
-class CompaniesScreenRoute extends _i8.PageRouteInfo<void> {
+/// [_i5.CompaniesScreen]
+class CompaniesScreenRoute extends _i9.PageRouteInfo<void> {
   const CompaniesScreenRoute()
       : super(
           CompaniesScreenRoute.name,
@@ -274,8 +326,8 @@ class CompaniesScreenRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i5.ApartmentsScreen]
-class ApartmentsScreenRoute extends _i8.PageRouteInfo<void> {
+/// [_i6.ApartmentsScreen]
+class ApartmentsScreenRoute extends _i9.PageRouteInfo<void> {
   const ApartmentsScreenRoute()
       : super(
           ApartmentsScreenRoute.name,
@@ -286,8 +338,8 @@ class ApartmentsScreenRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.MapScreen]
-class MapScreenRoute extends _i8.PageRouteInfo<void> {
+/// [_i7.MapScreen]
+class MapScreenRoute extends _i9.PageRouteInfo<void> {
   const MapScreenRoute()
       : super(
           MapScreenRoute.name,
@@ -298,8 +350,8 @@ class MapScreenRoute extends _i8.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.ProfileScreen]
-class ProfileScreenRoute extends _i8.PageRouteInfo<void> {
+/// [_i8.ProfileScreen]
+class ProfileScreenRoute extends _i9.PageRouteInfo<void> {
   const ProfileScreenRoute()
       : super(
           ProfileScreenRoute.name,

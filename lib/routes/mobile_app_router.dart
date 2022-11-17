@@ -1,4 +1,5 @@
 import 'package:all_build_companies/features/companies/presentation/companies/screen/companies_screen.dart';
+import 'package:all_build_companies/features/companies/presentation/company_detail/screen/company_detail_screen.dart';
 import 'package:all_build_companies/features/map/presentation/screen/map_screen.dart';
 import 'package:all_build_companies/features/profile/presentation/profile_main_screen/profile_screen.dart';
 import 'package:all_build_companies/features/apartments/presentation/apartments/screen/apartments_screen.dart';
@@ -16,6 +17,10 @@ export 'mobile_app_router.gr.dart';
       page: SplashScreen,
       initial: true,
       path: '/',
+    ),
+    AdaptiveRoute(
+      page: CompanyDetailScreen,
+      path: 'company_detail_screen',
     ),
     AdaptiveRoute(
       page: BottomNavigator,

@@ -1,6 +1,8 @@
 import 'package:all_build_companies/core/images/app_images.dart';
+import 'package:all_build_companies/features/companies/data/company_lists_data_base/company_list.dart';
 import 'package:all_build_companies/features/companies/data/models/comany_model.dart';
 import 'package:all_build_companies/features/companies/presentation/companies/widgets/compani_info_card.dart';
+import 'package:all_build_companies/widgets/custom_text_field.dart';
 import 'package:all_build_companies/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -20,17 +22,23 @@ class CompaniesScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
-        child: ListView.separated(
-          itemBuilder: (context, index) => CompanyInfoCard(
-            model: CompanyModel(
-              image: AppImages.elitHouselogo,
-              name: 'Elite House',
-              dateFoundation: '2013 год',
-              buildings: 5,
+        child: Column(
+          children: [
+            CustomTextField(
+              onChange: (String value) {},
             ),
-          ),
-          separatorBuilder: (context, index) => const SizedBox(height: 10),
-          itemCount: 10,
+            const SizedBox(height: 10),
+            Expanded(
+              child: ListView.separated(
+                itemBuilder: (context, index) => CompanyInfoCard(
+                  model: companyList[index],
+                ),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 10),
+                itemCount: companyList.length,
+              ),
+            ),
+          ],
         ),
       ),
     );
